@@ -1,4 +1,4 @@
-import OBR, { isShape, isPath, Item, Image, buildShape, buildPath, Command } from "@owlbear-rodeo/sdk";
+import OBR, { isShape, isPath, Item, Image, buildPath, Command } from "@owlbear-rodeo/sdk";
 import { getPluginId } from "./getPluginId";
 
 export function isPlainObject(
@@ -83,19 +83,31 @@ export function buildStatusRing(
       .build();
   }
 
-  return buildShape()
-    .width(diameter)
-    .height(diameter)
+  // Open arc: 324° circle (bottom 10% gap) approximated with 4 cubic bezier segments.
+  // Gap is 36° centered at 90° (screen-bottom). Arc runs clockwise from 108° to 72°.
+  // k90 / k72 are (4/3)*tan(angle/4) for 90° and 72° arc segments respectively.
+  const r = diameter / 2;
+  const k90 = 0.55228;
+  const k72 = 0.43323;
+  const cos72 = 0.30902;
+  const sin72 = 0.95106;
+  return buildPath()
+    .commands([
+      [Command.MOVE, -cos72 * r, sin72 * r],
+      [Command.CUBIC, -(cos72 + k72 * sin72) * r, (sin72 - k72 * cos72) * r, -r, k72 * r, -r, 0],
+      [Command.CUBIC, -r, -k90 * r, -k90 * r, -r, 0, -r],
+      [Command.CUBIC, k90 * r, -r, r, -k90 * r, r, 0],
+      [Command.CUBIC, r, k72 * r, (cos72 + k72 * sin72) * r, (sin72 - k72 * cos72) * r, cos72 * r, sin72 * r],
+    ])
     .scale({ x: scale, y: scale })
     .position(position)
     .fillOpacity(0)
     .strokeColor(color)
     .strokeOpacity(1)
     .strokeWidth(5)
-    .shapeType("CIRCLE")
     .attachedTo(item.id)
     .locked(true)
-    .name("Status Ring")
+    .name("Status Shape")
     .metadata({ [getPluginId("metadata")]: { enabled: true } })
     .layer("ATTACHMENT")
     .disableHit(true)
