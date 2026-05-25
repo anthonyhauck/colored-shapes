@@ -60,12 +60,12 @@ export function buildStatusRing(
     const r = diameter / 2;
     return buildPath()
       .commands([
-        [Command.MOVE, -r + 10, r],
+        [Command.MOVE, -r + 5, r],
         [Command.LINE, -r, r],
         [Command.LINE, -r, -r],
         [Command.LINE, r, -r],
         [Command.LINE, r, r],
-        [Command.LINE, r - 10, r],
+        [Command.LINE, r - 5, r],
       ])
       .scale({ x: scale, y: scale })
       .position(position)
