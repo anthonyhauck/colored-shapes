@@ -1,4 +1,4 @@
-import OBR, { Shape, Image } from "@owlbear-rodeo/sdk";
+import OBR, { Shape, Path, Image } from "@owlbear-rodeo/sdk";
 import { colors } from "./colors";
 import { getPluginId } from "./getPluginId";
 import {
@@ -14,9 +14,23 @@ import "./style.css";
  * the status ring context menu item is clicked.
  */
 
+let currentShapeType: "CIRCLE" | "RECTANGLE" = "CIRCLE";
+
 OBR.onReady(async () => {
-  // Setup the document with the colored buttons
+  // Setup the document with the shape toggle and colored buttons
   document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
+    <div class="shape-toggle">
+      <button class="shape-button selected" id="shape-circle" title="Ring">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="8" cy="8" r="6"/>
+        </svg>
+      </button>
+      <button class="shape-button" id="shape-square" title="Square">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="2" width="12" height="12"/>
+        </svg>
+      </button>
+    </div>
     <div class="colors">
       ${colors
         .map(
@@ -30,6 +44,17 @@ OBR.onReady(async () => {
         .join("")}
     </div>
   `;
+
+  document.getElementById("shape-circle")?.addEventListener("click", () => {
+    currentShapeType = "CIRCLE";
+    document.getElementById("shape-circle")?.classList.add("selected");
+    document.getElementById("shape-square")?.classList.remove("selected");
+  });
+  document.getElementById("shape-square")?.addEventListener("click", () => {
+    currentShapeType = "RECTANGLE";
+    document.getElementById("shape-square")?.classList.add("selected");
+    document.getElementById("shape-circle")?.classList.remove("selected");
+  });
   // Attach click listeners
   document
     .querySelectorAll<HTMLButtonElement>(".color-button")
@@ -52,12 +77,12 @@ async function handleButtonClick(button: HTMLButtonElement) {
   const selected = button.classList.contains("selected");
   const selection = await OBR.player.getSelection();
   if (selection) {
-    const circlesToAdd: Shape[] = [];
+    const circlesToAdd: (Shape | Path)[] = [];
     const circlesToDelete: string[] = [];
     // Get all selected items
     const items = await OBR.scene.items.getItems<Image>(selection);
     // Get all status rings in the scene
-    const statusRings = await OBR.scene.items.getItems<Shape>((item) => {
+    const statusRings = await OBR.scene.items.getItems<Shape | Path>((item) => {
       const metadata = item.metadata[getPluginId("metadata")];
       return Boolean(isPlainObject(metadata) && metadata.enabled);
     });
@@ -81,7 +106,8 @@ async function handleButtonClick(button: HTMLButtonElement) {
             item,
             color,
             dpi,
-            item.scale.x * (1 - attachedRings.length * 0.1)
+            item.scale.x * (1 - attachedRings.length * 0.1),
+            currentShapeType
           )
         );
       }

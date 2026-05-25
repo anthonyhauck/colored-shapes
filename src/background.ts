@@ -14,7 +14,7 @@ OBR.onReady(() => {
     icons: [
       {
         icon,
-        label: "Colored Rings",
+        label: "Colored Shapes",
         filter: {
           every: [
             { key: "type", value: "IMAGE" },
@@ -26,7 +26,7 @@ OBR.onReady(() => {
     ],
     embed: {
       url: "/",
-      height: 88,
+      height: 124,
     },
   });
 });

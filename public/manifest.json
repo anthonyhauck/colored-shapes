@@ -1,10 +1,9 @@
 {
-  "name": "Colored Rings",
+  "name": "Colored Shapes",
   "version": "1.0.0",
   "manifest_version": 1,
-  "author": "Owlbear Rodeo",
-  "homepage_url": "https://extensions.owlbear.rodeo/colored-rings",
+  "author": "Anthony Hauck",
   "icon": "/logo.png",
   "background_url": "/background.html",
-  "description": "Add simple colored status rings to any character"
+  "description": "Add colored status rings or squares to any character token"
 }

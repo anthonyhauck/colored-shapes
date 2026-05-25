@@ -1,4 +1,4 @@
-import OBR, { isShape, Item, Image, buildShape } from "@owlbear-rodeo/sdk";
+import OBR, { isShape, isPath, Item, Image, buildShape, buildPath, Command } from "@owlbear-rodeo/sdk";
 import { getPluginId } from "./getPluginId";
 
 export function isPlainObject(
@@ -22,7 +22,7 @@ export async function updateColorButtons(items: Item[]) {
     if (
       isPlainObject(metadata) &&
       metadata.enabled &&
-      isShape(item) &&
+      (isShape(item) || isPath(item)) &&
       item.attachedTo &&
       selection?.includes(item.attachedTo)
     ) {
@@ -41,7 +41,8 @@ export function buildStatusRing(
   item: Image,
   color: string,
   dpi: number,
-  scale: number
+  scale: number,
+  shapeType: "CIRCLE" | "RECTANGLE" = "CIRCLE"
 ) {
   const dpiScale = dpi / item.grid.dpi;
   const width = item.image.width * dpiScale;
@@ -54,7 +55,35 @@ export function buildStatusRing(
     x: item.position.x - offsetX + width / 2,
     y: item.position.y - offsetY + height / 2,
   };
-  const circle = buildShape()
+
+  if (shapeType === "RECTANGLE") {
+    const r = diameter / 2;
+    return buildPath()
+      .commands([
+        [Command.MOVE, -r + 10, r],
+        [Command.LINE, -r, r],
+        [Command.LINE, -r, -r],
+        [Command.LINE, r, -r],
+        [Command.LINE, r, r],
+        [Command.LINE, r - 10, r],
+      ])
+      .scale({ x: scale, y: scale })
+      .position(position)
+      .fillOpacity(0)
+      .strokeColor(color)
+      .strokeOpacity(1)
+      .strokeWidth(5)
+      .attachedTo(item.id)
+      .locked(true)
+      .name("Status Shape")
+      .metadata({ [getPluginId("metadata")]: { enabled: true } })
+      .layer("ATTACHMENT")
+      .disableHit(true)
+      .visible(item.visible)
+      .build();
+  }
+
+  return buildShape()
     .width(diameter)
     .height(diameter)
     .scale({ x: scale, y: scale })
@@ -72,8 +101,6 @@ export function buildStatusRing(
     .disableHit(true)
     .visible(item.visible)
     .build();
-
-  return circle;
 }
 
 /** Update the status rings for the current selection so that there are no gaps */

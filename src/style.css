@@ -8,6 +8,39 @@ body {
   color: white;
 }
 
+.shape-toggle {
+  display: flex;
+  padding: 4px 8px 0px 8px;
+  gap: 4px;
+}
+
+.shape-button {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: rgba(255, 255, 255, 0.5);
+  padding: 0;
+  outline: 0;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  transition: color 100ms ease, border-color 100ms ease;
+}
+
+.shape-button:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.shape-button.selected {
+  color: white;
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
 .colors {
   max-width: 248px;
   padding: 4px 8px;
