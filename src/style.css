@@ -81,6 +81,19 @@ body {
   );
 }
 
+/* Square color samples — same command count as circle paths so filled→hollow still transitions */
+.shape-square .color {
+  clip-path: path(
+    "M 0 0 L 24 0 L 24 24 L 0 24 Z M 12 12 L 12 12 L 12 12 L 12 12 Z"
+  );
+}
+
+.shape-square .selected .color {
+  clip-path: path(
+    "M 0 0 L 24 0 L 24 24 L 0 24 Z M 3 3 L 3 21 L 21 21 L 21 3 Z"
+  );
+}
+
 .color-button:hover .color {
   transform: scale(1.2);
 }

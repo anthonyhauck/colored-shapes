@@ -14,18 +14,37 @@ import "./style.css";
  * the status ring context menu item is clicked.
  */
 
-let currentShapeType: "CIRCLE" | "RECTANGLE" = "CIRCLE";
+const SHAPE_STORAGE_KEY = "colored-shapes-shape-type";
+
+let currentShapeType: "CIRCLE" | "RECTANGLE" =
+  localStorage.getItem(SHAPE_STORAGE_KEY) === "RECTANGLE" ? "RECTANGLE" : "CIRCLE";
+
+function applyShapeMode(shapeType: "CIRCLE" | "RECTANGLE") {
+  const app = document.querySelector<HTMLDivElement>("#app")!;
+  const circleBtn = document.getElementById("shape-circle");
+  const squareBtn = document.getElementById("shape-square");
+  if (shapeType === "RECTANGLE") {
+    app.classList.add("shape-square");
+    squareBtn?.classList.add("selected");
+    circleBtn?.classList.remove("selected");
+  } else {
+    app.classList.remove("shape-square");
+    circleBtn?.classList.add("selected");
+    squareBtn?.classList.remove("selected");
+  }
+}
 
 OBR.onReady(async () => {
+  const isSquare = currentShapeType === "RECTANGLE";
   // Setup the document with the shape toggle and colored buttons
   document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
     <div class="shape-toggle">
-      <button class="shape-button selected" id="shape-circle" title="Ring">
+      <button class="shape-button ${isSquare ? "" : "selected"}" id="shape-circle" title="Ring">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="8" cy="8" r="6"/>
         </svg>
       </button>
-      <button class="shape-button" id="shape-square" title="Square">
+      <button class="shape-button ${isSquare ? "selected" : ""}" id="shape-square" title="Square">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
           <rect x="2" y="2" width="12" height="12"/>
         </svg>
@@ -45,15 +64,17 @@ OBR.onReady(async () => {
     </div>
   `;
 
+  if (isSquare) document.querySelector<HTMLDivElement>("#app")!.classList.add("shape-square");
+
   document.getElementById("shape-circle")?.addEventListener("click", () => {
     currentShapeType = "CIRCLE";
-    document.getElementById("shape-circle")?.classList.add("selected");
-    document.getElementById("shape-square")?.classList.remove("selected");
+    localStorage.setItem(SHAPE_STORAGE_KEY, "CIRCLE");
+    applyShapeMode("CIRCLE");
   });
   document.getElementById("shape-square")?.addEventListener("click", () => {
     currentShapeType = "RECTANGLE";
-    document.getElementById("shape-square")?.classList.add("selected");
-    document.getElementById("shape-circle")?.classList.remove("selected");
+    localStorage.setItem(SHAPE_STORAGE_KEY, "RECTANGLE");
+    applyShapeMode("RECTANGLE");
   });
   // Attach click listeners
   document
