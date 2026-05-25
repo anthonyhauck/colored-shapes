@@ -9,7 +9,6 @@ import icon from "./status.svg";
  */
 
 OBR.onReady(() => {
-  const base = new URL("./", window.location.href).href;
   OBR.contextMenu.create({
     id: getPluginId("menu"),
     icons: [
@@ -26,7 +25,7 @@ OBR.onReady(() => {
       },
     ],
     embed: {
-      url: base,
+      url: import.meta.env.BASE_URL,
       height: 124,
     },
   });
