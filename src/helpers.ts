@@ -83,21 +83,21 @@ export function buildStatusRing(
       .build();
   }
 
-  // Open arc: 324° circle (bottom 10% gap) approximated with 4 cubic bezier segments.
-  // Gap is 36° centered at 90° (screen-bottom). Arc runs clockwise from 108° to 72°.
-  // k90 / k72 are (4/3)*tan(angle/4) for 90° and 72° arc segments respectively.
+  // Open arc: 252° circle (bottom 30% gap) approximated with 4 cubic bezier segments.
+  // Gap is 108° centered at 90° (screen-bottom). Arc runs clockwise from 144° to 36°.
+  // k90 / k36 are (4/3)*tan(angle/4) for 90° and 36° arc segments respectively.
   const r = diameter / 2;
   const k90 = 0.55228;
-  const k72 = 0.43323;
-  const cos72 = 0.30902;
-  const sin72 = 0.95106;
+  const k36 = 0.21118;
+  const cos36 = 0.80902;
+  const sin36 = 0.58779;
   return buildPath()
     .commands([
-      [Command.MOVE, -cos72 * r, sin72 * r],
-      [Command.CUBIC, -(cos72 + k72 * sin72) * r, (sin72 - k72 * cos72) * r, -r, k72 * r, -r, 0],
+      [Command.MOVE, -cos36 * r, sin36 * r],
+      [Command.CUBIC, -(cos36 + k36 * sin36) * r, (sin36 - k36 * cos36) * r, -r, k36 * r, -r, 0],
       [Command.CUBIC, -r, -k90 * r, -k90 * r, -r, 0, -r],
       [Command.CUBIC, k90 * r, -r, r, -k90 * r, r, 0],
-      [Command.CUBIC, r, k72 * r, (cos72 + k72 * sin72) * r, (sin72 - k72 * cos72) * r, cos72 * r, sin72 * r],
+      [Command.CUBIC, r, k36 * r, (cos36 + k36 * sin36) * r, (sin36 - k36 * cos36) * r, cos36 * r, sin36 * r],
     ])
     .scale({ x: scale, y: scale })
     .position(position)
