@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.DEPLOY_TOKEN }}
       - uses: actions/setup-node@v6
         with:
           node-version: 20
@@ -26,4 +28,4 @@ jobs:
           git config user.name "GitHub Action"
           git add .
           git commit -m "Deploy"
-          git push --force https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/anthonyhauck/colored-shapes.git HEAD:gh-pages
+          git push --force https://x-access-token:${{ secrets.DEPLOY_TOKEN }}@github.com/anthonyhauck/colored-shapes.git HEAD:gh-pages
