@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <rect width="100" height="100" rx="12" fill="#111827"/>
+  <!-- Outer square: corner pieces at bottom mimicking the in-game gap -->
+  <path d="M 29 86 L 14 86 L 14 14 L 86 14 L 86 86 L 71 86"
+        fill="none" stroke="#884dff" stroke-width="5" stroke-linecap="round"/>
+  <!-- Inner circle: 30% gap at bottom (252° arc from 144° to 36° clockwise) -->
+  <!-- Endpoints at 36°/144° on a circle of radius 22 centered at (50,50) -->
+  <path d="M 32.2 62.9 A 22 22 0 1 1 67.8 62.9"
+        fill="none" stroke="#1a6aff" stroke-width="5" stroke-linecap="round"/>
+</svg>
