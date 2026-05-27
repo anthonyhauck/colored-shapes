@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "manifest_version": 1,
   "author": "Anthony Hauck",
-  "icon": "/colored-shapes/logo.svg",
+  "icon": "/colored-shapes/colored-shapes.png",
   "background_url": "/colored-shapes/background.html",
   "description": "Add colored status rings or squares to any character token"
 }
