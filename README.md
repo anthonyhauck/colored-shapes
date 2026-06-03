@@ -37,4 +37,5 @@ GNU GPLv3
 
 This project is a rtesult of an enhanced example of using the Owlbear Rodeo SDK.
 
-Copyright (C) 2026 Owlbear Rodeo & Anthony Hauck for derivative aspects. This is only a slight modification of the original.
+Copyright (C) 2026 Owlbear Rodeo & Anthony Hauck for derivative aspects. 
+This is only a slight modification of the original.
