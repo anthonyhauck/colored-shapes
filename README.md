@@ -1,8 +1,7 @@
 # Colored Rings
 
-Add simple colored status rings to any character
+Add broken colored status rings and squares to any character token.
 
-![Interface](./docs/header.jpg)
 
 ## Installing
 
