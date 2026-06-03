@@ -5,7 +5,7 @@ Add broken colored status rings and squares to any character token.
 
 ## Installing
 
-The extension can be installed from the [store page](https://extensions.owlbear.rodeo/colored-rings).
+The extension can be installed from the [store page](https://extensions.owlbear.rodeo/
 
 ## How it Works
 
@@ -35,6 +35,6 @@ GNU GPLv3
 
 ## Contributing
 
-This project is provided as an example of how to use the Owlbear Rodeo SDK. As such it is unlikely that we will accept pull requests for new features.
+This project is a rtesult of an enhanced example of using the Owlbear Rodeo SDK.
 
-Copyright (C) 2023 Owlbear Rodeo
+Copyright (C) 2026 Owlbear Rodeo & Anthony Hauck for derivative aspects. This is only a slight modification of the original.
