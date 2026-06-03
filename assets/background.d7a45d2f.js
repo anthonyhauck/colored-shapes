@@ -1,0 +1,1 @@
+import{O as e,g as s}from"./getPluginId.be0decc9.js";const o="/colored-shapes/assets/status.3ee04f3c.svg";e.onReady(()=>{e.contextMenu.create({id:s("menu"),icons:[{icon:o,label:"Colored Shapes",filter:{every:[{key:"type",value:"IMAGE"},{key:"layer",value:"CHARACTER"}],permissions:["UPDATE"]}}],embed:{url:"/colored-shapes/",height:124}})});
