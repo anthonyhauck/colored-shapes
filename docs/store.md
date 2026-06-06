@@ -1,25 +1,39 @@
 ---
-title: Colored Rings
-description: Add simple colored status rings to any character
-author: Owlbear Rodeo
-image: https://raw.githubusercontent.com/owlbear-rodeo/colored-rings/main/docs/header.jpg
-icon: https://colored-rings.owlbear.rodeo/logo.png
+title: Colored Shapes
+description: Add colored status rings or squares to any character token, with a gap to keep token labels visible.
+author: Anthony Hauck
+image: https://raw.githubusercontent.com/anthonyhauck/colored-shapes/main/docs/header.jpg
+icon: https://anthonyhauck.github.io/colored-shapes/colored-shapes.png
 tags:
-  - built-by-owlbear
-  - tool
+  - tools
   - combat
-manifest: https://colored-rings.owlbear.rodeo/manifest.json
-learn-more: https://owlbear.app
+  - utility
+manifest: https://anthonyhauck.github.io/colored-shapes/manifest.json
+learn-more: https://github.com/anthonyhauck/colored-shapes
 ---
 
-# Colored Rings
+# Colored Shapes
 
-This extension can add simple colored rings to any Character image.
+Add colored status rings or squares to any character token to track conditions, initiative, targeting, or anything else your table needs.
 
-**How to use**
+## How to Use
 
-Select your character token and then click the colored rings icon that appears on the context menu. You can choose what color you would like your ring. Select another color to add another ring.
+1. Select one or more character tokens on the map
+2. Right-click (or use the context menu) and click the **Colored Shapes** icon
+3. Pick a color to add a ring or square — pick the same color again to remove it
+4. Use the toggle at the top of the panel to switch between **ring** and **square** shapes
 
-**Support**
+Multiple shapes stack with automatic scaling so they never overlap each other. Rings leave a gap at the bottom so character token labels stay visible.
 
-If you need support for this extension you can email <support@owlbear.rodeo>
+## Features
+
+- 12 colors to choose from
+- Toggle between open ring and square shapes per session
+- Stack multiple colors on one token
+- Shapes scale automatically when stacked
+- Rings leave a gap to keep token text readable
+- Shapes stay attached and move with their tokens
+
+## Support
+
+For bug reports or feature requests, open an issue on [GitHub](https://github.com/anthonyhauck/colored-shapes).
