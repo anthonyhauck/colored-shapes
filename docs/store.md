@@ -2,7 +2,7 @@
 title: Colored Shapes
 description: Add colored status rings or squares to any character token, with a gap to keep token labels visible.
 author: Anthony Hauck
-image: https://raw.githubusercontent.com/anthonyhauck/colored-shapes/main/docs/header.jpg
+image: https://raw.githubusercontent.com/anthonyhauck/colored-shapes/main/docs/colored-shapes-banner.png
 icon: https://anthonyhauck.github.io/colored-shapes/colored-shapes.png
 tags:
   - tools
