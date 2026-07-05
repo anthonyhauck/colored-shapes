@@ -5,9 +5,8 @@ author: Anthony Hauck
 image: https://raw.githubusercontent.com/anthonyhauck/colored-shapes/main/docs/colored-shapes-banner.png
 icon: https://anthonyhauck.github.io/colored-shapes/colored-shapes.png
 tags:
-  - tools
+  - tool
   - combat
-  - utility
 manifest: https://anthonyhauck.github.io/colored-shapes/manifest.json
 learn-more: https://github.com/anthonyhauck/colored-shapes
 ---

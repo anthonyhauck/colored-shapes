@@ -1,33 +1,53 @@
-# Colored Rings
+# Colored Shapes
 
-Add broken colored status rings and squares to any character token.
+Add colored status rings or squares to any character token in [Owlbear Rodeo](https://owlbear.rodeo/) to track conditions, initiative, targeting, or anything else your table needs.
 
+Rings are drawn as open arcs with a gap at the bottom so token labels stay visible, and multiple shapes stack with automatic scaling so they never overlap.
 
 ## Installing
 
-The extension can be installed from the [store page](https://extensions.owlbear.rodeo/
+Install from the [Owlbear Rodeo store](https://extensions.owlbear.rodeo/), or add it manually with the manifest URL:
+
+```
+https://anthonyhauck.github.io/colored-shapes/manifest.json
+```
+
+## How to Use
+
+1. Select one or more character tokens on the map
+2. Right-click (or use the context menu) and click the **Colored Shapes** icon
+3. Pick a color to add a ring or square — pick the same color again to remove it
+4. Use the toggle at the top of the panel to switch between **ring** and **square** shapes
 
 ## How it Works
 
-This project is a simple Typescript app.
+This is a simple TypeScript app built with [Vite](https://vitejs.dev/).
 
-The background script `background.ts` communicates with Owlbear Rodeo to create a context menu item. When that item is clicked a popup is shown with the `main.ts` site rendered.
+- `background.ts` communicates with Owlbear Rodeo to register a context menu item on character tokens. Clicking it opens a popup rendered from `main.ts`.
+- `main.ts` renders the popover UI (shape toggle and color buttons) and adds or removes shapes on the selected tokens.
+- `helpers.ts` builds the ring/square geometry and keeps stacked shapes scaled so they nest without gaps.
 
 ## Building
 
-This project uses [Yarn](https://yarnpkg.com/) as a package manager.
+This project uses [Yarn](https://yarnpkg.com/) as its package manager.
 
-To install all the dependencies run:
+Install dependencies:
 
-`yarn`
+```
+yarn
+```
 
-To run in a development mode run:
+Run in development mode:
 
-`yarn dev`
+```
+yarn dev
+```
 
-To make a production build run:
+Make a production build:
 
-`yarn build`
+```
+yarn build
+```
 
 ## License
 
@@ -35,7 +55,6 @@ GNU GPLv3
 
 ## Contributing
 
-This project is a rtesult of an enhanced example of using the Owlbear Rodeo SDK.
+This project is an enhanced example of using the Owlbear Rodeo SDK.
 
-Copyright (C) 2026 Owlbear Rodeo & Anthony Hauck for derivative aspects. 
-This is only a slight modification of the original.
+Copyright (C) 2026 Owlbear Rodeo & Anthony Hauck for derivative aspects.
